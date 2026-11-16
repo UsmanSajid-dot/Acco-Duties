@@ -15,7 +15,12 @@ class Tenant(BaseModel):
     email: str
     phone: str
     priority: Priority  
+    special_fields = {
+        "start_date": lambda x: date.fromisoformat(x),
+        "priority": lambda x: Priority(x)}
 
 x = Tenant(id=1, start_date=date(2023, 1, 1), name="John Doe", email="john.doe@example.com", phone="123-456-7890", priority=Priority.HIGH)
 print(x.to_dict())
 print(json.dumps(x.to_dict()))
+
+print(Tenant.from_dict(x.to_dict()) == x)

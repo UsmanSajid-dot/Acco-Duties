@@ -26,3 +26,20 @@ class BaseModel:
             else:
                 result[field.name] = value
         return result
+
+    @classmethod
+    def from_dict(cls, data):
+        """Create a model from a dictionary."""
+        # 1. make an empty dict for the converted values
+        result = {}
+        for key, value in data.items():
+            if value is None:
+                result[key] = None
+            elif key in cls.special_fields:
+                # 2. if the field is in special_fields, use the corresponding function to convert it
+                result[key] = cls.special_fields[key](value)
+            else:
+                # 3. otherwise, just use the value as is
+                result[key] = value 
+        return cls(**result)
+    
