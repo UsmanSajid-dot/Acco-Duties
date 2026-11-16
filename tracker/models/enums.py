@@ -1,15 +1,21 @@
 from enum import Enum
 
+
 class FacilityType(Enum):
-    KITCHEN = "Kitchen"
-    BATHROOM = "Bathroom"
+    '''Shared enum for facility types'''
+    KITCHEN = "kitchen"
+    BATHROOM = "bathroom"
 
-class PRIORITY(Enum):
-    LOW = "Low"
-    MEDIUM = "Medium"
-    HIGH = "High"
 
-class REPAIR_STATUS(Enum):
-    OPEN = "Open"
-    IN_PROGRESS = "In Progress"
-    RESOLVED = "Resolved"
+class Priority(Enum):
+    '''Shared enum for priority levels'''
+    LOW = "low"
+    MEDIUM = "medium"
+    HIGH = "high"
+
+
+class RepairStatus(Enum):
+    '''Shared enum for repair status'''
+    OPEN = "open"
+    IN_PROGRESS = "in_progress"
+    RESOLVED = "resolved"
