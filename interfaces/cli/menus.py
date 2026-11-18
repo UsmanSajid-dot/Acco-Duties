@@ -39,17 +39,66 @@ def run():
         if choice == "1":
             print("Tenant selected.")
             # Add logic for Tenant
-            choice = show_tenant_menu()
+            run_tenant()
         elif choice == "2":
             print("Admin selected.")
-            choice = show_admin_menu()
-
             # Add logic for Admin
-        elif choice == "3":
+            run_admin()
+        elif choice == "0":
             print("Exiting...")
             break
         else:
             print("Invalid choice. Please try again.")
 
+def run_admin():
+    while True:
+        choice = show_admin_menu()
+        if choice == "1":
+            print("Accommodations, floors, rooms & facilities selected.")
+            # Add logic for this option
+        elif choice == "2":
+            print("Residents & tenancies selected.")
+            # Add logic for this option
+        elif choice == "3":
+            print("Cleaning rotas selected.")
+            # Add logic for this option
+        elif choice == "4":
+            print("Fridge slots selected.")
+            # Add logic for this option
+        elif choice == "5":
+            print("Repairs selected.")
+            # Add logic for this option
+        elif choice == "6":
+            print("Dashboard selected.")
+            # Add logic for this option
+        elif choice == "0":
+            print("Logging out...")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+def run_tenant():
+    while True:
+        choice = show_tenant_menu()
+        if choice == "1":
+            print("My details selected.")
+            # Add logic for this option
+        elif choice == "2":
+            print("My cleaning duties selected.")
+            # Add logic for this option
+        elif choice == "3":
+            print("My fridge slot selected.")
+            # Add logic for this option
+        elif choice == "4":
+            print("Report a repair selected.")
+            # Add logic for this option
+        elif choice == "5":
+            print("My repairs selected.")
+            # Add logic for this option
+        elif choice == "0":
+            print("Logging out...")
+            break
+        else:
+            print("Invalid choice. Please try again.")
 if __name__ == "__main__":
     run()
