@@ -1,8 +1,10 @@
 from tracker.models.base import BaseModel
 from tracker.models.enums import Priority
+from tracker.storage.json_store import JsonStore
 from dataclasses import dataclass
 import json
 from datetime import date
+
 
 
 @dataclass
@@ -24,3 +26,7 @@ print(x.to_dict())
 print(json.dumps(x.to_dict()))
 
 print(Tenant.from_dict(x.to_dict()) == x)
+
+
+store = JsonStore("data/test_store.json")
+store.save()

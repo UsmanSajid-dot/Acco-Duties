@@ -13,10 +13,12 @@ class JsonStore:
         else:
             return {
                 "schema_version" : 1,
-                "next_id" : {},
-                "residents" : {}
+                "next_ids" : {},
+                "resident" : {}
             }
 
     def save(self):
-        with open(self.file_path, 'w') as f:
+        with open(self.file_path + ".tmp", 'w') as f:
             json.dump(self.data, f)
+        os.replace(self.file_path + ".tmp", self.file_path)
+        
