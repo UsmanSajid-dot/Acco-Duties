@@ -1,4 +1,4 @@
-from interfaces.cli.menus import run
+from interfaces.cli.app import run
 
 if __name__ == "__main__":
     run()
