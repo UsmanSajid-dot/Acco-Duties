@@ -47,3 +47,5 @@ class JsonStore:
     def get_all(self, table):
         """Return all records for a table."""
         return self.data.get(table, {}).values()
+
+    

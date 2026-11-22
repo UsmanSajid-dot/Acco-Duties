@@ -1,3 +1,6 @@
+from tracker.utils.exceptions import ValidationError
+from tracker.utils.validators import is_valid_email
+
 def show_admin_menu(): 
     print("==Admin Menu:")    
     print("     1. Accommodations, floors, rooms & facilities")
@@ -31,7 +34,7 @@ def show_admin_residents_selected_menu():
     return choice
 
 
-def run_admin():
+def run_admin(services):
     while True:
         choice = show_admin_menu()
         if choice == "1":
@@ -40,7 +43,7 @@ def run_admin():
         elif choice == "2":
             print("Residents & tenancies selected.")
             # Add logic for this option  
-            run_residents()
+            run_residents(services)
         elif choice == "3":
             print("Cleaning rotas selected.")
             # Add logic for this option
@@ -59,13 +62,13 @@ def run_admin():
         else:
             print("Invalid choice. Please try again.")
 
-def run_residents():
+def run_residents(services):
     while True:
         choice = show_admin_residents_menu()
         if choice == "1":
             print("Residents selected.")
             # Add logic for this option
-            run_residents_selected()
+            run_residents_selected(services)
         elif choice == "2":
             print("Tenancies selected.")
             # Add logic for this option  
@@ -75,15 +78,25 @@ def run_residents():
         else:
             print("Invalid choice. Please try again.")
 
-def run_residents_selected():
+def run_residents_selected(services):
     while True:
         choice = show_admin_residents_selected_menu()
         if choice == "1":
             print("Showing Residents")
             # Add logic for this option
+            print(services.resident.list_residents())  # Example of calling a service method
         elif choice == "2":
             print("Adding a new Resident")
             # Add logic for this option
+            name = input("Enter resident's name: ")
+            email = input("Enter resident's email: ")
+            phone = input("Enter resident's phone: ")
+            try:
+                is_valid_email(email)
+                new_resident = services.resident.create_resident(name, email, phone)
+                print(f"Resident added: {new_resident}")
+            except ValidationError as e:
+                print(f"Error: {e}")
         elif choice == "0":
             print("Logging out...")
             break
@@ -94,12 +107,13 @@ def run_residents_selected():
 
     # Add logic for this option
 
-def run_residents_add():
+def run_residents_add(services):
     while True:
         choice = show_admin_residents_selected_menu()
         if choice == "1":
             print("Showing Residents")
             # Add logic for this option
+
         elif choice == "2":
             print("Adding a new Resident")
             # Add logic for this option

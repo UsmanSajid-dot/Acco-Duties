@@ -1,4 +1,4 @@
-from exceptions import ValidationError
+from tracker.utils.exceptions import ValidationError
 
 def is_valid_email(email):
     """Check if the provided email is valid."""

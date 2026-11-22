@@ -13,22 +13,19 @@ def show_menu():
     choice = input("Please select an option: ")
     return choice  
 
-def run():
+def run(services):
     while True:
         choice = show_menu()
         if choice == "1":
             print("Tenant selected.")
             # Add logic for Tenant
-            run_tenant()
+            run_tenant(service)
         elif choice == "2":
             print("Admin selected.")
             # Add logic for Admin
-            run_admin()
+            run_admin(services)
         elif choice == "0":
             print("Exiting...")
             break
         else:
             print("Invalid choice. Please try again.")
-
-if __name__ == "__main__":
-    run()
