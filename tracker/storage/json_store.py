@@ -44,3 +44,6 @@ class JsonStore:
             self.data["last_ids"][table] += 1
         return self.data["last_ids"][table] 
 
+    def get_all(self, table):
+        """Return all records for a table."""
+        return self.data.get(table, {}).values()
