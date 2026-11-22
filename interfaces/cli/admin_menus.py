@@ -94,7 +94,7 @@ def run_residents_selected(services):
             try:
                 is_valid_email(email)
                 new_resident = services.resident.create_resident(name, email, phone)
-                print(f"Resident added: {new_resident}")
+                print(f"Resident added: {new_resident.name},\nEmail: {new_resident.email},\nPhone: {new_resident.phone},\nID: {new_resident.resident_id}")
             except ValidationError as e:
                 print(f"Error: {e}")
         elif choice == "0":
