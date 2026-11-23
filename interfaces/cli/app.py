@@ -19,7 +19,7 @@ def run(services):
         if choice == "1":
             print("Tenant selected.")
             # Add logic for Tenant
-            run_tenant(service)
+            run_tenant(services)
         elif choice == "2":
             print("Admin selected.")
             # Add logic for Admin

@@ -113,7 +113,6 @@ def run_residents_add(services):
         if choice == "1":
             print("Showing Residents")
             # Add logic for this option
-
         elif choice == "2":
             print("Adding a new Resident")
             # Add logic for this option
