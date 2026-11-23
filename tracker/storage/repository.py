@@ -20,4 +20,17 @@ class Repository:
     def list_all(self):
         """Return every stored record as a model."""
         return [self.model_cls.from_dict(record) for record in self.store.get_all(self.table)]
+
+
+    def get(self, record_id):
+        """Return a single stored record as a model."""
+        record = self.store.get(self.table, record_id)
+        if record is not None:
+            return self.model_cls.from_dict(record)
+        return None
+
+    def remove(self, record_id):
+        """Delete a single stored record."""
+        return self.store.delete(self.table, record_id)
+
     

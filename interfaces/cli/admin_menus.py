@@ -84,7 +84,7 @@ def run_residents_selected(services):
         if choice == "1":
             print("Showing Residents")
             # Add logic for this option
-            print(services.resident.list_residents())  # Example of calling a service method
+            print_residents(services)  # Example of calling a service method
         elif choice == "2":
             print("Adding a new Resident")
             # Add logic for this option
@@ -97,6 +97,22 @@ def run_residents_selected(services):
                 print(f"Resident added: {new_resident.name},\nEmail: {new_resident.email},\nPhone: {new_resident.phone},\nID: {new_resident.resident_id}")
             except ValidationError as e:
                 print(f"Error: {e}")
+        elif choice == "3":
+            print("Editing a Resident")
+            # Add logic for this option
+        elif choice == "4":
+            print("Deleting a Resident")
+            # Add logic for this option
+            print_residents(services)  # Show residents before deletion
+            resident_id = int(input("Enter the ID of the resident to delete: "))
+            resident = services.resident.get_resident_by_id(resident_id)
+            if resident:
+                # Assuming you have a delete method in your service
+                services.resident.delete_resident(resident_id)
+                print(f"Resident with ID {resident_id} has been deleted.")
+            else:
+                print(f"No resident found with ID {resident_id}.")  
+
         elif choice == "0":
             print("Logging out...")
             break
@@ -107,25 +123,12 @@ def run_residents_selected(services):
 
     # Add logic for this option
 
-def run_residents_add(services):
-    while True:
-        choice = show_admin_residents_selected_menu()
-        if choice == "1":
-            print("Showing Residents")
-            # Add logic for this option
-        elif choice == "2":
-            print("Adding a new Resident")
-            # Add logic for this option
-        elif choice == "3":
-            print("Editing a Resident")
-            # Add logic for this option
-        elif choice == "4":
-            print("Deleting a Resident")
-            # Add logic for this option
-        elif choice == "0":
-            print("Logging out...")
-            break
-        else:
-            print("Invalid choice. Please try again.")
-    print("Press any key to return to the previous menu.")
-    return
+def print_residents(services):
+    residents = services.resident.list_residents()
+    if not residents:
+        print("No residents found.")
+    else:
+        print(f"{'ID':<4} {'Name':<20} {'Email':<28} {'Phone':<12}")
+        print(f"{'-'*4} {'-'*20} {'-'*28} {'-'*12}")
+        for resident in residents:
+            print(f"{resident.resident_id:<4} {resident.name:<20} {resident.email:<28} {resident.phone:<12}")

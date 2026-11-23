@@ -48,4 +48,14 @@ class JsonStore:
         """Return all records for a table."""
         return self.data.get(table, {}).values()
 
-    
+    def get(self, table, record_id):
+        """Return a single record by ID."""
+        return self.data.get(table, {}).get(str(record_id)) 
+
+    def delete(self, table, record_id):
+        """Delete a single record by ID."""
+        if str(record_id) in self.data.get(table, {}):
+            del self.data[table][str(record_id)]
+            self.save()
+            return True
+        return False

@@ -20,4 +20,17 @@ class ResidentService:
 
     def list_residents(self):
         return self.repository.list_all()
-    
+
+    def get_resident_by_id(self, resident_id):
+        residents = self.repository.list_all()
+        for resident in residents:
+            if resident.resident_id == resident_id:
+                return resident
+        return None
+
+    def delete_resident(self, resident_id):
+        resident = self.get_resident_by_id(resident_id)
+        if resident:
+            self.repository.remove(resident_id)
+            return True
+        return False
